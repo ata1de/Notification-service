@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { NotificationRepository } from '../../infra/database/repositories/notification-repository';
 import { Content } from '../entities/content';
@@ -13,6 +14,7 @@ interface SendNotificationResponse {
   notification: Notification;
 }
 
+@Injectable()
 export class SendNotification {
   constructor(private notificationRepository: NotificationRepository) {}
 
@@ -31,14 +33,6 @@ export class SendNotification {
     );
 
     await this.notificationRepository.create(notification);
-
-    // return this.prismaService.notification.create({
-    //   data: {
-    //     category,
-    //     content,
-    //     recipientId,
-    //   },
-    // });
 
     return {
       notification,

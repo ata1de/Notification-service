@@ -68,4 +68,12 @@ export class Notification {
   set recipientId(value: string) {
     this.props.recipientId = value;
   }
+
+  get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
+
+  set updatedAt(value: Date) {
+    this.props.updatedAt = value;
+  }
 }

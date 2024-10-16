@@ -1,26 +1,23 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { PrismaService } from '../../database/prisma.service';
+import { Body, Controller, Post } from '@nestjs/common';
+import { SendNotification } from 'src/application/use-cases/send-notifications-use-cases';
 import { NotificationDTO } from '../dto/notification-dto';
 
 @Controller('notifications')
 export class NotificationController {
-  constructor(private readonly prismaService: PrismaService) {}
-
-  @Get()
-  async list() {
-    return this.prismaService.notification.findMany();
-  }
+  constructor(private readonly sendNotification: SendNotification) {}
 
   @Post()
   async create(@Body() body: NotificationDTO) {
     const { category, content, recipientId } = body;
 
-    return this.prismaService.notification.create({
-      data: {
-        category,
-        content,
-        recipientId,
-      },
+    const { notification } = await this.sendNotification.execute({
+      category,
+      content,
+      recipientId,
     });
+
+    return {
+      notification,
+    };
   }
 }
