@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Notification } from 'src/application/entities/notification';
+import { NotificationMapper } from '../../mappers/notification-mapper';
 import { PrismaService } from '../../prisma.service';
 import { NotificationRepository } from '../notification-repository';
 
@@ -10,15 +11,10 @@ export class PrismaNotificationRepository extends NotificationRepository {
   }
 
   async create(notification: Notification): Promise<void> {
+    const raw = NotificationMapper.toPrisma(notification);
+
     await this.prismaService.notification.create({
-      data: {
-        category: notification.category,
-        content: notification.content.value,
-        recipientId: notification.recipientId,
-        createdAt: notification.createdAt,
-        readAt: notification.readAt,
-        updatedAt: notification.updatedAt,
-      },
+      data: raw,
     });
   }
 }
