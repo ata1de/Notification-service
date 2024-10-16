@@ -1,16 +1,16 @@
 import { IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class NotificationDTO {
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   recipientId: string;
 
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   @Length(1, 255)
   category: string;
 
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   content: string;
 }

@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
+import { NotificationRepository } from '../../infra/database/repositories/notification-repository';
 import { Content } from '../entities/content';
 import { Notification } from '../entities/notification';
-import { NotificationRepository } from '../repositories/notification-repository';
 
 interface SendNotificationRequest {
   category: string;

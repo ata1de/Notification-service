@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { PrismaService } from './database/prisma.service';
-import { NotificationDTO } from './dto/notification-dto';
+import { PrismaService } from '../../database/prisma.service';
+import { NotificationDTO } from '../dto/notification-dto';
 
 @Controller('notifications')
-export class AppController {
+export class NotificationController {
   constructor(private readonly prismaService: PrismaService) {}
 
   @Get()
