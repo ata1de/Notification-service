@@ -1,7 +1,7 @@
+import { Content } from '@applications/entities/content';
 import { Injectable } from '@nestjs/common';
-import { randomUUID } from 'crypto';
+import { makeNotification } from '@test/factories/notification-factory';
 import { NotificationRepository } from '../../infra/database/repositories/notification-repository';
-import { Content } from '../entities/content';
 import { Notification } from '../entities/notification';
 
 interface SendNotificationRequest {
@@ -24,12 +24,11 @@ export class SendNotification {
     const { category, content, recipientId } = request;
 
     const notification = new Notification(
-      {
+      makeNotification({
         category,
         content: new Content(content),
         recipientId,
-      },
-      randomUUID(),
+      }),
     );
 
     await this.notificationRepository.create(notification);

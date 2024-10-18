@@ -1,6 +1,6 @@
 import { NotFoundNotification } from '@applications/errors/notFoundNotification';
+import { makeNotification } from '@test/factories/notification-factory';
 import { InMemoryNotificationsRepository } from '@test/repositories/in-memory-notifications-repository';
-import { Content } from '../entities/content';
 import { Notification } from '../entities/notification';
 import { CancelNotification } from './cancel-notifications';
 
@@ -13,14 +13,7 @@ describe('CancelNotifications', () => {
 
   it('should cancel all notifications', async () => {
     const cancelNotifications = new CancelNotification(notificationRepository);
-    const notification = new Notification(
-      {
-        category: 'category',
-        content: new Content('content'),
-        recipientId: 'recipientId',
-      },
-      'notificationId',
-    );
+    const notification = new Notification(makeNotification());
     notificationRepository.create(notification);
 
     const response = await cancelNotifications.execute({
