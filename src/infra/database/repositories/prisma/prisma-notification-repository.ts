@@ -18,13 +18,29 @@ export class PrismaNotificationRepository extends NotificationRepository {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async findById(id: string): Promise<Notification | null> {
+  async save(notification: Notification): Promise<void> {
     throw new Error('Method not implemented.');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async cancel(notification: Notification): Promise<void> {
-    throw new Error('Method not implemented.');
+  async countManyById(recipientId: string): Promise<number> {
+    return await this.prismaService.notification.count({
+      where: {
+        recipientId,
+      },
+    });
+  }
+
+  async findById(id: string): Promise<Notification | null> {
+    const raw = await this.prismaService.notification.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!raw) {
+      return null;
+    }
+
+    return raw;
   }
 }

@@ -5,6 +5,14 @@ import { NotificationRepository } from '../../src/infra/database/repositories/no
 export class InMemoryNotificationsRepository implements NotificationRepository {
   public notifications: Notification[] = [];
 
+  async countManyById(recipientId: string): Promise<number> {
+    const count = await this.notifications.filter(
+      (notification) => notification.recipientId === recipientId,
+    ).length;
+
+    return Promise.resolve(count);
+  }
+
   async create(notification: Notification): Promise<void> {
     this.notifications.push(notification);
   }
