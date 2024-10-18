@@ -10,6 +10,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "resolveJsonModule": true,
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
@@ -18,10 +19,10 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@/applications/*": [".src/application/*"],
-      "@/helpers/*": [".src/helpers/*"],
-      "@/test/*": ["./test/*"],
-      "@/infra/*": [".src/infra/*"]
-    }
+      "@applications/*": ["./src/application/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@test/*": ["./test/*"],
+      "@infra/*": ["./src/infra/*"]
+}
   }
 }

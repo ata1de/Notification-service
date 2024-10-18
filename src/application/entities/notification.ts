@@ -8,6 +8,7 @@ interface NotificationProps {
   recipientId: string;
   createdAt: Date;
   updatedAt?: Date;
+  cancelAt?: Date;
 }
 
 export class Notification {
@@ -75,5 +76,13 @@ export class Notification {
 
   set updatedAt(value: Date) {
     this.props.updatedAt = value;
+  }
+
+  get cancelAt(): Date {
+    return this.props.cancelAt;
+  }
+
+  public cancel() {
+    this.props.cancelAt = new Date();
   }
 }

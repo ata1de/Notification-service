@@ -17,4 +17,14 @@ export class PrismaNotificationRepository extends NotificationRepository {
       data: raw,
     });
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async findById(id: string): Promise<Notification | null> {
+    throw new Error('Method not implemented.');
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async cancel(notification: Notification): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
 }
