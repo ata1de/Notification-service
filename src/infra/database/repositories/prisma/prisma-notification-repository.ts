@@ -44,4 +44,14 @@ export class PrismaNotificationRepository extends NotificationRepository {
 
     return raw;
   }
+
+  findManyByRecipientId(recipientId: string): Promise<Notification[]> {
+    const notifications = this.prismaService.notification.findMany({
+      where: {
+        recipientId,
+      },
+    });
+
+    return notifications;
+  }
 }

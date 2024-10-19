@@ -24,6 +24,20 @@ export class Notification {
     };
   }
 
+  // Método para retorno aninhado e desestruturado
+  toObject() {
+    return {
+      id: this._id,
+      content: this.props.content,
+      category: this.props.category,
+      recipientId: this.props.recipientId,
+      createdAt: this.props.createdAt,
+      readAt: this.props.readAt,
+      updatedAt: this.props.updatedAt,
+      cancelAt: this.props.cancelAt,
+    };
+  }
+
   get id(): string {
     return this._id;
   }
@@ -49,7 +63,7 @@ export class Notification {
   }
 
   get createdAt(): Date {
-    return this.props.readAt;
+    return this.props.createdAt;
   }
 
   get category(): string {
@@ -68,15 +82,15 @@ export class Notification {
     this.props.recipientId = value;
   }
 
-  get updatedAt(): Date {
+  get updatedAt(): Date | undefined {
     return this.props.updatedAt;
   }
 
-  set updatedAt(value: Date) {
+  set updatedAt(value: Date | undefined) {
     this.props.updatedAt = value;
   }
 
-  get cancelAt(): Date {
+  get cancelAt(): Date | undefined {
     return this.props.cancelAt;
   }
 
